@@ -8,26 +8,85 @@ else:
 
 import sys
 import os
+import json
+import math
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 GAMESTATE_DIR = os.path.join(SCRIPT_DIR, "gamestate")
 
 CIV_NAME = ""
 CIV_TYPE = ""
+STARTING_AGE = "Stone Age" # options later
+STARTING_POPULATION = 1200
+STARTING_RESOURCE_MULT = 1
+STARTING_RESOURCES = {
+    "wood": 500,
+    "food": 500,
+    "stone": 200
+}
+
+gamestate = {}
+
+# difficulty changes here
+
+RESOURCES = {key: value * STARTING_RESOURCE_MULT for key, value in STARTING_RESOURCES.items()}
+STARTING_ARMY = math.floor(STARTING_POPULATION / 10)
+STARTING_MILITA = math.floor((STARTING_POPULATION / 3) * 2)
 
 # If new empire
 def init_new_empire():
     name = input("What is your empire called?\n")
     gov_type = input("What kind of government does " + name + " have?\n")
-    return name, gov_type
 
-if CIV_NAME == "" and CIV_TYPE == "":
-    CIV_NAME, CIV_TYPE = init_new_empire()
+    gamestate = {
+        "name": name,
+        "government": {
+            "type": gov_type
+        },
+        "era": STARTING_AGE,
+        "population": STARTING_POPULATION,
+        "resources": RESOURCES,
+        "military": {
+            "standing_army": STARTING_ARMY,
+            "militia": STARTING_MILITA
+        },
+        "history": []
+    }
 
-    with open(os.path.join(GAMESTATE_DIR, "empire.txt"), "a", encoding="utf-8") as file:
-        file.write("NAME:" + CIV_NAME + "\nTYPE:" + CIV_TYPE + "\n")
+    save_path = os.path.join(GAMESTATE_DIR, name.lower() + ".json")
 
-if input("Does the empire of " + CIV_NAME + " with the " + CIV_TYPE + " government type look right? (Y/N)\n").lower() != "y":
-    sys.exit()
+    with open(save_path, "w", encoding="utf-8") as file:
+        json.dump(gamestate, file, indent=4)
 
-input()
+    if input(
+        "Does the empire of " + name +
+        " with the " + gov_type +
+        " government type look right? (Y/N)\n"
+    ).lower() != "y":
+        sys.exit()
+
+    return gamestate
+
+def load_world(path):
+    with open(path, "r", encoding="utf-8") as file:
+        return json.load(file)
+
+loadsavedialogue = input("Would you like to load an empire or make a new one? (LOAD/CREATE)\n").lower()
+if loadsavedialogue == "load":
+    savename = input("What is your empire's name?\n").lower()
+    save_path = os.path.join(GAMESTATE_DIR, savename + ".json")
+
+    if os.path.exists(save_path):
+        gamestate = load_world(save_path)
+
+        if input("Does the empire of " + gamestate["name"] + " with the " + gamestate["government"]["type"] + " government type sound right? (YES/NO)\n").lower() != 'yes':
+            sys.exit()
+    else:
+        if input("Empire not found. Would you like to make a new empire? (YES/NO)\n").lower() == 'yes':
+            gamestate = init_new_empire()
+        else:
+            sys.exit()
+elif loadsavedialogue == "create":
+    gamestate = init_new_empire()
+
+input() #temp

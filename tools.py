@@ -5,7 +5,8 @@ GAMESTATE_DIR = os.path.join(SCRIPT_DIR, "gamestate")
 
 def rename_empire(NEW_NAME):
     civ_type = ""
-    FILE_PATH = os.path.join(GAMESTATE_DIR, "empire.txt")
+    # read civ name for file to change
+    FILE_PATH = os.path.join(GAMESTATE_DIR, "THE-SAVE-FILE")
     if os.path.exists(FILE_PATH):
         with open(FILE_PATH, "r", encoding="utf-8") as file:
             for line in file:
