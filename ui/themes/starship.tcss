@@ -1,0 +1,13 @@
+Screen {
+    background: black;
+}
+
+Sidebar {
+    color: cyan;
+    border: heavy cyan;
+}
+
+Narrative {
+    color: white;
+    border: solid cyan;
+}

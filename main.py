@@ -28,6 +28,8 @@ STARTING_RESOURCES = {
     "stone": 200
 }
 
+# difficulty changes here
+
 GLOBAL_RULESET = """
 You are the narrator of a realistic civilization simulation.
 
@@ -76,8 +78,6 @@ Your role is only to narrate the provided results.
 """
 
 gamestate = {}
-
-# difficulty changes here
 
 RESOURCES = {key: value * STARTING_RESOURCE_MULT for key, value in STARTING_RESOURCES.items()}
 STARTING_ARMY = math.floor(STARTING_POPULATION / 10)
@@ -209,7 +209,7 @@ def send_prompt(prompt):
                     "content": prompt
                 }
             ],
-            "think": True,
+            "think": False,
             "stream": True,
             "keep_alive": "30m"
         },
@@ -235,6 +235,11 @@ def send_prompt(prompt):
                 started_content = True
 
             print(content, end="", flush=True)
+
+from ui.ui_init import GameUI
+
+app = GameUI(gamestate["era"])
+#app.run() -- need to feed input/output streams here first
 
 def game_loop():
     while True:

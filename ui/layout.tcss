@@ -1,0 +1,23 @@
+Screen {
+    layout: vertical;
+}
+
+#main {
+    layout: horizontal;
+    height: 1fr;
+}
+
+Sidebar {
+    width: 30;
+    border: solid green;
+    padding: 1;
+}
+
+Narrative {
+    border: solid white;
+    padding: 1;
+}
+
+Input {
+    dock: bottom;
+}
