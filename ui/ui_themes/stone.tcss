@@ -1,0 +1,13 @@
+Screen {
+    background: #23170f;
+}
+
+Sidebar {
+    color: wheat;
+    border: round darkgoldenrod;
+}
+
+Narrative {
+    color: ivory;
+    border: round sienna;
+}

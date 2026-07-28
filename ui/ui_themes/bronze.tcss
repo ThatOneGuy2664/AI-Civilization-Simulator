@@ -1,0 +1,13 @@
+Screen {
+    background: sienna;
+}
+
+Sidebar {
+    color: black;
+    border: #4a4a4a;
+}
+
+Narrative {
+    color: black;
+    border: #4a4a4a;
+}

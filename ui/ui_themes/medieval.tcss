@@ -1,0 +1,13 @@
+Screen {
+    background: navy;
+}
+
+Sidebar {
+    color: lime;
+    border: limegreen;
+}
+
+Narrative {
+    color: gold;
+    border: goldenrod;
+}
