@@ -4,10 +4,6 @@ if input("PLEASE READ CAREFULLY:\n\nThis game requires a locally-hosted AI LLM t
 else:
     print("\n\n\n")
 
-# Game Initalization:
-
-DEBUG = False
-
 import sys
 import os
 import json
@@ -58,7 +54,9 @@ def init_new_empire():
             "stone": 1,
             "wood": 1
         },
-        "history": []
+        "history": [],
+        "wartime": False,
+        "day": 1
     }
 
     save_path = os.path.join(GAMESTATE_DIR, name.lower() + ".json")
@@ -96,6 +94,8 @@ if loadsavedialogue == "load":
             sys.exit()
 elif loadsavedialogue == "create":
     gamestate = init_new_empire()
+
+print("\nLoading game...")
 
 from ui.ui_init import GameUI
 app = GameUI(gamestate)
