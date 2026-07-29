@@ -1,0 +1,25 @@
+{
+    "name": "testrun",
+    "government": {
+        "type": "federation"
+    },
+    "era": "Stone Age",
+    "population": 1200,
+    "resources": {
+        "wood": 500,
+        "food": 500,
+        "stone": 200
+    },
+    "military": {
+        "standing_army": 120,
+        "militia": 800
+    },
+    "modifiers": {
+        "food": 1,
+        "stone": 1,
+        "wood": 1
+    },
+    "history": [],
+    "wartime": false,
+    "day": 1
+}

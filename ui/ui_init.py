@@ -3,6 +3,8 @@ from textual.app import App, ComposeResult
 from textual.widgets import Static, Input
 from textual.containers import Horizontal, Vertical
 from textual.widgets import Input
+from functools import partial
+from textual.worker import get_current_worker
 import sys
 import math
 
@@ -39,20 +41,23 @@ class Header(Static):
 class Narrative(Static):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.buffer = ""
+
+        self.buffer = "The empire awaits your decree..."
         self.new_message = True
+
+    def add_command(self, command):
+        self.buffer += f"\n\n> {command}\n\n"
+        self.new_message = True
+        self.update(self.buffer)
 
     def append(self, text):
         if self.new_message:
-            self.buffer += "\n\n" + text
+            self.buffer += text
             self.new_message = False
         else:
             self.buffer += text
 
         self.update(self.buffer)
-
-    def start_message(self):
-        self.new_message = True
 
 class GameUI(App):
     def __init__(self, savedata, **kwargs):
@@ -89,7 +94,6 @@ class GameUI(App):
         with Horizontal(id="main"):
             yield Sidebar(id="sidebar")
             yield Narrative(
-                "The empire awaits your decree...",
                 id="narrative",
             )
 
@@ -103,14 +107,18 @@ class GameUI(App):
         event.input.clear()
 
         self.run_worker(
-            self.stream_response(command),
+            partial(self.stream_response, command),
             exclusive=True,
             thread=True,
         )
 
     def stream_response(self, command):
         narrative = self.query_one("#narrative", Narrative)
-        self.call_from_thread(narrative.start_message)
+        self.call_from_thread(narrative.add_command, command)
 
         for chunk in self.game.process_turn(command):
+            worker = get_current_worker()
+            if worker.is_cancelled:
+                return
+
             self.call_from_thread(narrative.append, chunk)
