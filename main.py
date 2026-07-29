@@ -59,6 +59,7 @@ def init_new_empire():
         "day": 1
     }
 
+    os.makedirs(GAMESTATE_DIR, exist_ok=True)
     save_path = os.path.join(GAMESTATE_DIR, name.lower() + ".json")
 
     with open(save_path, "w", encoding="utf-8") as file:
