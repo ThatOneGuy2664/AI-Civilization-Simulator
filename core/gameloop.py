@@ -7,6 +7,7 @@ project_root = Path(__file__).resolve().parent.parent
 sys.path.append(str(project_root))
 
 from ai.narrator_ai import NarratorAI
+from ai.parser_ai import ParserAI
 
 def format_table(table, indent=0):
     output = ""

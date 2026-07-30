@@ -2,7 +2,8 @@
     "gather": {
         "type": "the kind of material gathered",
 		"labor": "as a number, the people dedicated to the task",
-        "resource": "the resource to be gathered"
+        "resource": "the resource to be gathered",
+        "tool": "the tool, or 'none', used"
     },
 
 	"build": {
@@ -25,7 +26,7 @@
         }
     },
 
-    "change_gov_type": {
+    "change_government_type": {
         "method": "'append' or 'replace' the current type",
         "change": "the replacement/appended string"
     },
@@ -42,7 +43,7 @@
     "explore": {
         "scale": "as an integer, the radius around the origin explored",
         "origin": "the place the exploration starts from"
-    }
+    },
 
     "custom": {
         "catagory": "the type of action to the best definition possible at minimum word count",
