@@ -1,5 +1,6 @@
 from pathlib import Path
 from textual.app import App, ComposeResult
+from textual.containers import VerticalScroll
 from textual.widgets import Static, Input
 from textual.containers import Horizontal, Vertical
 from textual.widgets import Input
@@ -24,40 +25,59 @@ ERA_TO_THEME = {
     "Space Age": "starship.tcss",
 }
 
-class Sidebar(Static):
+class Sidebar(VerticalScroll):
+    def compose(self):
+        yield Static(id="sidebar_text")
+
     def update_stats(self, gamestate):
-        self.update(
-            f"""
-Population: {gamestate["population"]}
+        self.query_one("#sidebar_text", Static).update(
+            f"""Population: {gamestate["population"]}
 Food: {gamestate["resources"]["food"]}
 Wood: {gamestate["resources"]["wood"]}
-Stone: {gamestate["resources"]["stone"]}
-"""
+Stone: {gamestate["resources"]["stone"]}"""
         )
+
+    def on_mount(self):
+        self.update_stats(self.app.savedata)
+
+    def on_mount(self):
+        self.update_stats(self.app.savedata)
 
 class Header(Static):
     pass
 
-class Narrative(Static):
+class Narrative(VerticalScroll):
+    def compose(self):
+        yield Static(id="narrative_text")
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-        self.buffer = "The empire awaits your decree..."
+        self.lines = ["The empire awaits your decree..."]
         self.new_message = True
+
+    def on_mount(self):
+        self.refresh_text()
+
+    def refresh_text(self):
+        self.query_one("#narrative_text", Static).update(
+            "\n\n".join(self.lines)
+        )
+        self.scroll_end(animate=False)
 
     def add_command(self, command):
-        self.buffer += f"\n\n> {command}\n\n"
+        self.lines.append(f"> {command}")
+        self.lines.append("")
         self.new_message = True
-        self.update(self.buffer)
+        self.refresh_text()
 
     def append(self, text):
         if self.new_message:
-            self.buffer += text
+            self.lines[-1] = text
             self.new_message = False
         else:
-            self.buffer += text
+            self.lines[-1] += text
 
-        self.update(self.buffer)
+        self.refresh_text()
 
 class GameUI(App):
     def __init__(self, savedata, **kwargs):
