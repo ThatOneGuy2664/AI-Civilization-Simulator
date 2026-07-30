@@ -9,15 +9,19 @@ Screen {
 
 Sidebar {
     width: 30;
-    border: solid green;
     padding: 1;
 }
 
 Narrative {
-    border: solid white;
     padding: 1;
+    width: 1fr;
 }
 
 Input {
     dock: bottom;
+}
+
+Header {
+    content-align: center middle;
+    height: 3;
 }
