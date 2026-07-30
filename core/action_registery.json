@@ -42,7 +42,7 @@
     "explore": {
         "scale": "as an integer, the radius around the origin explored",
         "origin": "the place the exploration starts from"
-    }
+    },
 
     "custom": {
         "catagory": "the type of action to the best definition possible at minimum word count",
