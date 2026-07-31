@@ -1,61 +1,11 @@
+import json
+
 class ParserAI:
-    #temp, read file
-    actions = """
-        {
-            "gather": {
-                "type": "the kind of material gathered",
-        		"labor": "as a number, the people dedicated to the task",
-                "resource": "the resource to be gathered",
-                "tool": "the tool, or 'none', used"
-            },
+    def get_registry():
+        with open("core/action_registry.json", "r", encoding="utf-8") as file:
+            return json.load(file)
 
-        	"build": {
-        		"scale": "as an integer, the size of the structure",
-        		"name": "the name of the building",
-                "type": "the type of building constructed",
-                "progress": "the progress made/turn",
-        	},
-
-            "research": {
-                "scale": "as an integer, the 'size' of the attempted jump in knowledge",
-                "item": "the subject being researched"
-            },
-
-            "found_city": {
-                "scale": "the size of the outpost: 1 being a small forward base, 10 being a large city",
-                "population": "the number of people in the city",
-                "key_buildings": {
-                    "the main productive buildings in the city"
-                }
-            },
-
-            "change_government_type": {
-                "method": "'append' or 'replace' the current type",
-                "change": "the replacement/appended string"
-            },
-
-            "change_empire_name": {
-                "new_name": "the new name of the empire"
-            },
-
-            "change_empire_relation": {
-                "target_empire": "the empire whose relation to the player's has changed",
-                "value": "as an integer, the value to increase/decrease by, i.e. 50, or -100, points being from 0 (mortal enemies) to 100 (best of friends/allies)"
-            },
-
-            "explore": {
-                "scale": "as an integer, the radius around the origin explored",
-                "origin": "the place the exploration starts from"
-            },
-
-            "custom": {
-                "catagory": "the type of action to the best definition possible at minimum word count",
-                "intent": "the summarized intent at minimum word count",
-                "target": "null or the affected"
-            }
-        }
-
-    """
+    actions = get_registry()
 
     # The ParserAI's SYSTEM instructions
     SYSTEM_INSTRUCTIONS = f"""
@@ -85,6 +35,23 @@ class ParserAI:
     Do not explain your reasoning.
     Do not wrap the JSON in markdown.
 
+    Always convert specific objects into their abstract game resource.
+
+    Examples:
+
+    berries -> food
+    fish -> food
+    deer -> food
+    fruit -> food
+    trees -> wood
+    oak -> wood
+    pine -> wood
+    granite -> stone
+    iron ore -> iron
+    gold vein -> gold
+
+    Preserve the original object in the "target" field.
+
     GOALS
 
     Interpret what the ruler intends to accomplish.
@@ -97,7 +64,7 @@ class ParserAI:
 
     Do not invent unnecessary details.
 
-    If no registered action fits, use "custom".
+    If no registered action fits, use "general_action".
 
     RULES
 
@@ -118,6 +85,14 @@ class ParserAI:
     Use integers for numerical values.
 
     Use the smallest reasonable number of words for names and types.
+
+    Every registered action MUST include every field defined in its schema.
+
+    If a value is unknown, infer the most reasonable value.
+
+    Never omit required fields.
+
+    Never output partial actions.
 
     REGISTERED ACTIONS
 

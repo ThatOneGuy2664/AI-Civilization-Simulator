@@ -5,10 +5,10 @@ import math
 import requests
 
 # Wrap this in a flag to see if it is the first time running OR if Ollama is already installed
-if input("PLEASE READ CAREFULLY:\n\nThis game requires a locally-hosted AI LLM to run. If you have your own then in the game directory open the game.properties.json file and change the 'AI-model' to your local model's id. If you do NOT have your own model and would like this program to install and set one up for you using Ollama, reply YES (estimated size 9.3GB).\n").lower() != "yes":
-    sys.exit()
-else:
-    print("\n\n\n")
+#if input("PLEASE READ CAREFULLY:\n\nThis game requires a locally-hosted AI LLM to run. If you have your own then in the game directory open the game_properties.py file and change the 'AI-model' to your local model's id. If you do NOT have your own model and would like this program to install and set one up for you using Ollama, reply YES (estimated size 9.3GB).\n").lower() != "yes":
+#    sys.exit()
+#else:
+#    print("\n\n\n")
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 GAMESTATE_DIR = os.path.join(SCRIPT_DIR, "gamestate")
@@ -43,7 +43,7 @@ def init_new_empire():
             "type": gov_type
         },
         "era": STARTING_AGE,
-        "population": STARTING_POPULATION,
+        "empire_population": STARTING_POPULATION,
         "resources": RESOURCES,
         "military": {
             "standing_army": STARTING_ARMY,

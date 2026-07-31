@@ -29,19 +29,18 @@ class Sidebar(VerticalScroll):
     def compose(self):
         yield Static(id="sidebar_text")
 
-    def update_stats(self, gamestate):
+    def update_stats(self):
+        gamestate = self.app.game.gamestate
+
         self.query_one("#sidebar_text", Static).update(
-            f"""Population: {gamestate["population"]}
+            f"""Population: {gamestate["empire_population"]}
 Food: {gamestate["resources"]["food"]}
 Wood: {gamestate["resources"]["wood"]}
 Stone: {gamestate["resources"]["stone"]}"""
         )
 
     def on_mount(self):
-        self.update_stats(self.app.savedata)
-
-    def on_mount(self):
-        self.update_stats(self.app.savedata)
+        self.update_stats()
 
 class Header(Static):
     pass
@@ -142,3 +141,8 @@ class GameUI(App):
                 return
 
             self.call_from_thread(narrative.append, chunk)
+
+        self.call_from_thread(
+            self.query_one("#sidebar", Sidebar).update_stats
+        )
+        #self.call_from_thread(self.refresh_ui) - refresh ALL ui besides Narrative
