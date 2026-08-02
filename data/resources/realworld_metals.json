@@ -1,0 +1,114 @@
+{
+	"iron": {
+		"id": "iron",
+		"catagory": "metal"
+		"tags": [
+            "construction",
+            "weapon_material",
+            "tool_material",
+			"armor_material"
+        ],
+		"stats": {
+            "hardness": 40,
+            "flexibility": 5,
+            "conductivity": 2
+        }
+	},
+
+	"bronze": {
+		"id": "bronze",
+		"catagory": "metal"
+        "ingredients": [
+            "copper",
+            "tin"
+        ],
+		"parent": "iron",
+		"stats": {
+            "hardness": 35,
+            "flexibility": 50,
+            "conductivity": 6
+        }
+    },
+
+	"gold": {
+		"id": "gold",
+		"catagory": "luxury_resource",
+		"tags": [
+			"currency",
+	        "luxury",
+	        "electronics_material"
+		],
+		"stats": {
+            "hardness": 1,
+            "flexibility": 100,
+            "conductivity": 60
+        }
+	},
+
+	"ruby": {
+		"id": "ruby",
+		"catagory": "luxury_resource",
+		"parent": "gold",
+		"stats": {
+            "hardness": 90,
+            "flexibility": 0,
+            "conductivity": 0
+        }
+	},
+
+	"emerald": {
+		"id": "emerald",
+		"catagory": "luxury_resource",
+		"stats": {
+			"hardness": 70,
+			"flexibility": 0,
+			"conductivity": 0
+		},
+		"tags": [
+			"luxury",
+			"currency"
+		]
+	},
+
+	"beryllium": {
+		"id": "beryllium",
+		"catagory": "metal",
+		"tags": [
+			"toxic",
+			"electronics_material"
+		],
+		"stats": {
+			"hardness": 55,
+			"flexibility": 3,
+			"conductivity": 7
+		}
+	},
+
+	"graphite": {
+		"id": "graphite",
+		"catagory": "metal",
+		"tags": [
+			"electronics_material"
+		]
+		"stats": {
+            "hardness": 5,
+            "flexibility": 0,
+            "conductivity": 0
+        }
+	},
+
+	"steel": {
+		"id": "steel",
+		"category": "metal",
+        "ingredients": [
+            "iron",
+            "graphite"
+        ],
+        "parent": "iron",
+		"stats": {
+            "hardness": 70,
+            "flexibility": 40,
+            "conductivity": 2
+        }
+	}
+}

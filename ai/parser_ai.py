@@ -2,7 +2,7 @@ import json
 
 class ParserAI:
     def get_registry():
-        with open("core/action_registry.json", "r", encoding="utf-8") as file:
+        with open("data/actions/action_registry.json", "r", encoding="utf-8") as file:
             return json.load(file)
 
     actions = get_registry()
@@ -47,6 +47,7 @@ class ParserAI:
     oak -> wood
     pine -> wood
     granite -> stone
+    limestone -> stone
     iron ore -> iron
     gold vein -> gold
 

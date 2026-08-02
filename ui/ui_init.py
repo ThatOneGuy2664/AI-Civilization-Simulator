@@ -103,10 +103,18 @@ class GameUI(App):
         calculated_year = math.floor(self.savedata["day"] / 365)
         return max(calculated_year, 1)
 
+    @property
+    def dayNumber(self):
+        day = self.savedata['day'] - (self.simTimeYr * 365)
+        if day < 1:
+            return 1
+        else:
+            return day
+
     def compose(self):
         yield Header(
             f"{self.savedata['name']} {self.savedata['government']['type']} | "
-            f"Day {self.savedata['day']} of Year {self.simTimeYr} | {self.wartimestr}",
+            f"Day {self.dayNumber} of Year {self.simTimeYr} | {self.wartimestr}",
             id="header",
         )
 

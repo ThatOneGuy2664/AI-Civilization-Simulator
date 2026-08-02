@@ -1,0 +1,9 @@
+{
+	"liepter": {
+		"catagory": "liquids",
+		"descriptors": [
+			"alien", "hydrating", "bioluminescent"
+		],
+		"parent": "water"
+	}
+}

@@ -1,0 +1,10 @@
+{
+	"water": {
+		"catagory": "liquids",
+		"stats": {
+			"hydration": 100,
+			"cooling": 75,
+			"lubrication": 20
+		}
+	}
+}
