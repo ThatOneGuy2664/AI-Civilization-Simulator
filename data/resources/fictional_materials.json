@@ -1,1 +1,22 @@
-
+{
+    "cryonite": {
+        "id": "cryonite",
+        "category": "metal",
+        "descriptors": [
+            "heat sponge",
+            "burning cold to touch",
+            "destablizes violently when it cannot absorb heat"
+        ], 
+        "tags": {
+            "cooling_material",
+            "armor_material",
+            "weapon_material",
+            "explosive"
+        },
+        "stats": {
+            "hardness": 50,
+            "flexibility": 0,
+            "conductivity": 0
+        }
+    }
+}
