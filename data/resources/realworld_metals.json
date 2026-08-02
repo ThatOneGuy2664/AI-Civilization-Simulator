@@ -110,5 +110,15 @@
             "flexibility": 40,
             "conductivity": 2
         }
+	},
+
+	"amber": {
+        "id": "amber",
+		"category": "luxury_resource",
+		"stats": {
+            "hardness": 23,
+			"flexibility": 0,
+			"conductivity": 0
+		}
 	}
 }
