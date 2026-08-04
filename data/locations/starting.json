@@ -1,0 +1,66 @@
+{
+	"river": {
+		"resources": {
+			"fish": {
+				"produces": "food",
+				"regeneration": {
+			        "rate": 0.5,
+			        "max": 100
+			    },
+				"seasons": [
+					"spring",
+					"fall"
+				]
+			},
+			"driftwood": {
+				"produces": "wood",
+				"regeneration": {
+			        "rate": 0.15,
+			        "max": 40
+			    },
+				"seasons": "all"
+			}
+		},
+		"rarity": 30
+	},
+
+	"forest": {
+		"resources": {
+			"tree": {
+				"produces": "wood",
+				"regeneration": {
+			        "rate": 0.15,
+			        "max": 150
+			    },
+				"seasons": "all"
+			}
+		},
+		"rarity": 70
+	},
+
+	"iron_vein": {
+		"resources": {
+			"iron_node": {
+				"produces": "iron",
+				"regeneration": {
+					"rate": 0,
+					"max": 340
+				}
+			}
+		},
+		"rarity": 30
+	},
+
+	"copper_vein": {
+		"resources": {
+			"copper_node": {
+				"produces": "copper",
+				"regeneration": {
+					"rate": 0,
+					"max": 460
+				}
+			}
+		},
+		"rarity": 25
+	}
+}

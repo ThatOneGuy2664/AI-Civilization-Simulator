@@ -14,5 +14,8 @@ def save_game(gamestate):
         gamestate["name"].lower() + ".json"
     )
 
+    if gamestate["new_game"]:
+        gamestate["new_game"] = False
+
     with open(path, "w", encoding="utf-8") as file:
         json.dump(gamestate, file, indent=4)

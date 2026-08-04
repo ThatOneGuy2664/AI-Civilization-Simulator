@@ -3,7 +3,7 @@
 		"id": "iron",
 		"catagory": "metal"
 		"tags": [
-            "construction",
+            "construction_material",
             "weapon_material",
             "tool_material",
 			"armor_material"
@@ -89,7 +89,7 @@
 		"catagory": "metal",
 		"tags": [
 			"electronics_material"
-		]
+		],
 		"stats": {
             "hardness": 5,
             "flexibility": 0,
@@ -97,28 +97,112 @@
         }
 	},
 
-	"steel": {
-		"id": "steel",
-		"category": "metal",
-        "ingredients": [
-            "iron",
-            "graphite"
-        ],
-        "parent": "iron",
+	"thorium": {
+		"id": "thorium",
+		"catagory": "metal",
 		"stats": {
-            "hardness": 70,
-            "flexibility": 40,
-            "conductivity": 2
-        }
+			"hardness": 35,
+			"flexibility": 60,
+			"conductivity": 37
+		},
+		"tags": [
+			"nuclear_fuel",
+			"electronics_material",
+			"radioactive"
+		]
 	},
 
-	"amber": {
-        "id": "amber",
-		"category": "luxury_resource",
+	"lead": {
+		"id": "lead",
+		"catagory": "metal",
 		"stats": {
-            "hardness": 23,
+			"hardness": 10,
+			"flexibility": 100,
+			"conductivity": 1
+		},
+		"tags": [
+			"toxic",
+			"electronics_material",
+			"radiation_shield"
+		]
+	},
+
+	"copper": {
+		"id": "copper",
+		"catagory": "metal",
+		"stats": {
+			"hardness": 35,
+			"flexibility": 70,
+			"conductivity": 90
+		},
+		"tags": [
+			"electronics_material"
+		]
+	},
+
+	"tin": {
+		"id": "tin",
+		"catagory": "metal",
+		"stats": {
+			"hardness": 12,
+			"flexibility": 80,
+			"conductivity": 13
+		},
+		"tags": [
+			"electronics_material",
+			"construction_material"
+		]
+	},
+
+	"zinc": {
+		"id": "zinc",
+		"catagory": "metal",
+		"stats": {
+			"hardness": 35,
+			"flexibility": 5,
+			"conductivity": 25
+		},
+		"tags": [
+			"electronics_material"
+		]
+	},
+
+	"silver": {
+		"id": "silver",
+		"catagory": "metal",
+		"stats": {
+			"hardness": 23,
+			"flexibility": 85,
+			"conductivity": 100
+		},
+		"tags": [
+			"electronics_material"
+		]
+	},
+
+	"diamond": {
+		"id": "diamond",
+		"catagory": "metal",
+		"stats": {
+			"hardness": 90,
 			"flexibility": 0,
 			"conductivity": 0
-		}
+		},
+		"tags": [
+			"electronics_material"
+		]
+	},
+
+	"nickel": {
+		"id": "nickel",
+		"catagory": "metal",
+		"stats": {
+			"hardness": 42,
+			"flexibility": 45,
+			"conductivity": 17
+		},
+		"tags": [
+			"electronics_material"
+		]
 	}
 }

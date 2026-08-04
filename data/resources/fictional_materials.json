@@ -5,10 +5,11 @@
         "descriptors": [
             "heat sponge",
             "burning cold to touch",
-            "destablizes violently when it cannot absorb heat"
-        ], 
+            "destablizes violently when it cannot absorb heat",
+            "ice blue crystal rock"
+        ],
         "tags": {
-            "cooling_material",
+            "heat_sponge_coolant",
             "armor_material",
             "weapon_material",
             "explosive"
@@ -16,7 +17,10 @@
         "stats": {
             "hardness": 50,
             "flexibility": 0,
-            "conductivity": 0
+            "conductivity": 0,
+            "cooling": 120,
+            "coolant_lifetime": 100,
+            "coolant_efficiency": 80
         }
     }
 }

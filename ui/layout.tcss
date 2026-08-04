@@ -24,4 +24,5 @@ Input {
 Header {
     content-align: center middle;
     height: 3;
+    text-style: bold;
 }

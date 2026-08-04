@@ -1,0 +1,90 @@
+{
+	"steel": {
+		"id": "steel",
+		"category": "alloy",
+        "ingredients": [
+            "iron",
+            "graphite"
+        ],
+        "parent": "iron",
+		"stats": {
+            "hardness": 70,
+            "flexibility": 40,
+            "conductivity": 2
+        }
+	},
+
+	"brass": {
+		"id": "brass",
+		"catagory": "alloy",
+		"stats": {
+			"hardness": 40,
+			"flexibility": 60,
+			"conductivity": 27
+		},
+		"ingredients": [
+			"copper",
+			"zinc"
+		],
+		"tags": [
+			"electronics_material",
+			"construction_material",
+			"armor_material",
+			"weapon_material"
+		]
+	},
+
+	"electrum": {
+		"id": "electrum",
+		"catagory": "alloy",
+		"stats": {
+			"hardness": 30,
+			"flexibility": 30,
+			"conductivity": 18
+		},
+		"ingredients": [
+			"silver",
+			"gold"
+		],
+		"tags": [
+			"currency",
+			"construction_material"
+		]
+	},
+
+	"gunmetal": {
+		"id": "gunmetal",
+		"catagory": "alloy",
+		"stats": {
+			"hardness": 32,
+			"flexibility": 0,
+			"conductivity": 10
+		},
+		"ingredients": [
+			"copper",
+			"tin",
+			"zinc"
+		],
+		"tags": [
+			"weapon_material",
+			"construction_material"
+		]
+	},
+
+	"rose_gold": {
+		"id": "rose_gold",
+		"catagory": "alloy",
+		"stats": {
+			"hardness": 56,
+			"flexibility": 10,
+			"conductivity": 75
+		},
+		"ingredients": [
+			"copper",
+			"gold"
+		],
+		"tags": [
+			"currency"
+		]
+	}
+}

@@ -3,6 +3,9 @@ import os
 import json
 import math
 import requests
+import random
+
+random.seed(os.urandom(8)) # Force random seed using hardware noise
 
 # Wrap this in a flag to see if it is the first time running OR if Ollama is already installed
 #if input("PLEASE READ CAREFULLY:\n\nThis game requires a locally-hosted AI LLM to run. If you have your own then in the game directory open the game_properties.py file and change the 'AI-model' to your local model's id. If you do NOT have your own model and would like this program to install and set one up for you using Ollama, reply YES (estimated size 9.3GB).\n").lower() != "yes":
@@ -32,9 +35,23 @@ RESOURCES = {key: value * STARTING_RESOURCE_MULT for key, value in STARTING_RESO
 STARTING_ARMY = math.floor(STARTING_POPULATION / 10)
 STARTING_MILITA = math.floor((STARTING_POPULATION / 3) * 2)
 
+def get_starting_neighbors():
+    with open("data/locations/starting.json", "r", encoding="utf-8") as file:
+        possible_neighbors = json.load(file)
+
+    selected_keys = random.sample(list(possible_neighbors.keys()), 3)
+
+    neighbors = {
+        key: possible_neighbors[key]
+        for key in selected_keys
+    }
+
+    return neighbors
+
 # If new empire
 def init_new_empire():
     name = input("What is your empire called?\n")
+    capital_name = input("What is the name of " + name + "'s capital city?\n")
     gov_type = input("What kind of government does " + name + " have?\n")
 
     gamestate = {
@@ -56,7 +73,21 @@ def init_new_empire():
         },
         "history": [],
         "wartime": False,
-        "day": 1
+        "day": 1,
+        "settlements": {
+            "capital": {
+                "population": STARTING_POPULATION,
+                "key_buildings": {
+                    "town_hall": {
+                        "type": "government",
+                        "bonus": "morale"
+                    }
+                },
+                "name": capital_name,
+                "neighbors": get_starting_neighbors()
+            }
+        },
+        "new_game": True
     }
 
     os.makedirs(GAMESTATE_DIR, exist_ok=True)

@@ -4,7 +4,54 @@
 		"stats": {
 			"hydration": 100,
 			"cooling": 75,
-			"lubrication": 20
+			"lubrication": 20,
+			"coolant_lifetime": 60,
+			"coolant_efficiency": 90
 		}
+	},
+
+	"oil": {
+		"catagory": "liquids",
+		"stats": {
+			"hydration": 0,
+			"cooling": 0,
+			"lubrication": 85,
+			"coolant_lifetime": 0,
+			"coolant_efficiency": 0
+		},
+		"tags": [
+			"toxic",
+			"fuel",
+			"flammable"
+		]
+	},
+
+	"petrol": {
+		"catagory": "liquids",
+		"stats": {
+			"hydration": 0,
+			"cooling": 0,
+			"lubrication": 0,
+			"coolant_lifetime": 0,
+			"coolant_efficiency": 0
+		},
+		"ingredients": [
+			"oil"
+		],
+		"parent": "oil"
+	},
+
+	"liquid_nitrogen": {
+		"catagory": "liquids",
+		"stats": {
+			"hydration": 0,
+			"cooling": 1000,
+			"lubrication": 0,
+			"coolant_lifetime": 0,
+			"coolant_efficiency": 1
+		},
+		"tags": [
+			"flash_freezing"
+		]
 	}
 }

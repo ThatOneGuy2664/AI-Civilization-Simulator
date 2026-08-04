@@ -51,8 +51,17 @@ class Narrative(VerticalScroll):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.lines = ["The empire awaits your decree..."]
-        self.new_message = True
+        self.loading_frames = [
+            "Generating Opening |",
+            "Generating Opening /",
+            "Generating Opening -",
+            "Generating Opening \\"
+        ]
+        self.loading_index = 0
+        self.loading = False
+        self.loading_timer = None
+        self.lines = [""]
+        self.new_message = False
 
     def on_mount(self):
         self.refresh_text()
@@ -62,6 +71,10 @@ class Narrative(VerticalScroll):
             "\n\n".join(self.lines)
         )
         self.scroll_end(animate=False)
+
+    def add_message(self, text):
+        self.lines.append(text)
+        self.refresh_text()
 
     def add_command(self, command):
         self.lines.append(f"> {command}")
@@ -75,6 +88,42 @@ class Narrative(VerticalScroll):
             self.new_message = False
         else:
             self.lines[-1] += text
+
+        self.refresh_text()
+
+    def start_loading(self):
+        self.loading_active = True
+        self.loading_index = 0
+
+        self.lines.append(
+            self.loading_frames[self.loading_index]
+        )
+        self.refresh_text()
+
+        self.loading_timer = self.set_interval(
+            0.5,
+            self.update_loading
+        )
+
+    def update_loading(self):
+        if not self.loading_active:
+            return
+
+        self.lines[-1] = self.loading_frames[self.loading_index]
+        self.loading_index = (
+            self.loading_index + 1
+        ) % len(self.loading_frames)
+
+        self.refresh_text()
+
+    def stop_loading(self):
+        self.loading_active = False
+
+        if self.loading_timer:
+            self.loading_timer.stop()
+
+        if self.lines[-1].startswith("Generating Opening"):
+            self.lines.pop()
 
         self.refresh_text()
 
@@ -93,6 +142,46 @@ class GameUI(App):
             ],
             **kwargs,
         )
+
+    def on_mount(self):
+        if self.savedata["new_game"]:
+            self.start_intro()
+
+    def start_intro(self):
+        command = self.query_one("#command", Input)
+        command.disabled = True
+        narrative = self.query_one("#narrative", Narrative)
+        narrative.start_loading()
+
+        self.run_worker(
+            self.stream_intro,
+            exclusive=True,
+            thread=True,
+        )
+
+    def stream_intro(self):
+        narrative = self.query_one("#narrative", Narrative)
+
+        for chunk in self.generate_intro():
+            if narrative.loading_active:
+                narrative.stop_loading()
+
+            self.call_from_thread(
+                narrative.append,
+                chunk
+            )
+
+        self.call_from_thread(self.finish_intro)
+
+    def generate_intro(self):
+        return self.game.process_turn(None, True)
+
+    def finish_intro(self):
+        command = self.query_one("#command", Input)
+        command.disabled = False
+        command.focus()
+        narrative = self.query_one("#narrative", Narrative)
+        narrative.add_message("The Empire awaits your command...")
 
     @property
     def wartimestr(self):

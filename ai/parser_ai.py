@@ -28,7 +28,7 @@ class ParserAI:
 
     Never perform those calculations.
 
-    OUTPUT
+    OUTPUT:
 
     Return ONLY valid JSON.
 
@@ -53,7 +53,7 @@ class ParserAI:
 
     Preserve the original object in the "target" field.
 
-    GOALS
+    GOALS:
 
     Interpret what the ruler intends to accomplish.
 
