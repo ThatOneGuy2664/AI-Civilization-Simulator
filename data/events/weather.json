@@ -1,0 +1,9 @@
+{
+	"rain": {
+		"duration": [1,2,3,4,5],
+		"effects": {
+			"crops": 1.5,
+			"travel": 0.7
+		}
+	}
+}

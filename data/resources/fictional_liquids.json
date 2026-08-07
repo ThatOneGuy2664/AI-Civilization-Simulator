@@ -4,6 +4,9 @@
 		"descriptors": [
 			"alien", "hydrating", "bioluminescent", "green colored"
 		],
-		"parent": "water"
+		"parent": "water",
+		"tags": [
+			"emits_light"
+		]
 	}
 }

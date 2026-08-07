@@ -53,5 +53,19 @@
 		"tags": [
 			"flash_freezing"
 		]
+	},
+
+	"slag": {
+		"catagory": "liquids",
+		"stats": {
+			"natural_cooling_time": 1
+		},
+		"tags": [
+			"toxic",
+			"molten",
+			"cools_to_solid",
+			"emits_light"
+		],
+		"transforms_to": "stone"
 	}
 }
