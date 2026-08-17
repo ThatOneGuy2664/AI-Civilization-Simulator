@@ -62,5 +62,18 @@
 			}
 		},
 		"rarity": 25
+	},
+
+	"gold_vein": {
+		"resources": {
+			"gold_node": {
+				"produces": "gold",
+				"regeneration": {
+					"rate": 0,
+					"max": 240
+				}
+			}
+		},
+		"rarity": 5
 	}
 }
