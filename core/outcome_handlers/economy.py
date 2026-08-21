@@ -5,14 +5,24 @@ def gather_resource(gamestate, action):
     labor = action["labor"]
     tool = action["tool"]
 
-    gathered = labor * 3 #temp, add sim logic
-    gamestate["resources"][resource] += gathered
+    errors = []
 
     if labor > gamestate["empire_population"]:
-        return "Not enough population"
+        errors.append("insufficient_population")
 
     if resource not in gamestate["resources"]:
-        return "Unknown resource"
+        errors.append("unknown_resource")
+
+    if errors:
+        return {
+            "success": False,
+            "action": "gather",
+            "resource": resource,
+            "errors": errors,
+        }
+
+    gathered = labor * 3 #temp, add sim logic
+    gamestate["resources"][resource] += gathered
 
     save_game(gamestate)
 
@@ -20,7 +30,7 @@ def gather_resource(gamestate, action):
         outcome: success;
         workers: {labor};
         tool(s) used: {tool};
-        food gathered: {gathered}
+        food gathered: {gathered};
     """
 
 HANDLERS = {

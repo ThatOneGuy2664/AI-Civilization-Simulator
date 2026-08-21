@@ -21,7 +21,8 @@
 				"seasons": "all"
 			}
 		},
-		"rarity": 30
+		"rarity": 30,
+		"tags": ["water"]
 	},
 
 	"forest": {
@@ -35,7 +36,8 @@
 				"seasons": "all"
 			}
 		},
-		"rarity": 70
+		"rarity": 70,
+		"tags": ["forest"]
 	},
 
 	"iron_vein": {
@@ -48,7 +50,8 @@
 				}
 			}
 		},
-		"rarity": 30
+		"rarity": 30,
+		"tags": ["ore_vein"]
 	},
 
 	"copper_vein": {
@@ -61,7 +64,8 @@
 				}
 			}
 		},
-		"rarity": 25
+		"rarity": 25,
+		"tags": ["ore_vein"]
 	},
 
 	"gold_vein": {
@@ -74,6 +78,7 @@
 				}
 			}
 		},
-		"rarity": 5
+		"rarity": 5,
+		"tags": ["ore_vein"]
 	}
 }

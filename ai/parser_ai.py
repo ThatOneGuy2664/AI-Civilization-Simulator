@@ -105,8 +105,12 @@ class ParserAI:
     {
         "actions": [
             {
-                "action": "...",
-                "...": "..."
+                "type of action": {
+                    "arguments"...
+                },
+                "other action id": {
+
+                }
             }
         ]
     }

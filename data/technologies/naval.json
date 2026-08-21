@@ -1,0 +1,31 @@
+{
+    "wooden_raft": {
+        "prerequisites": [
+            {
+                "neighbor": {
+                    "tag": "water"
+                }
+            }
+        ],
+        "research_cost": [
+            {
+                "resource": "wood",
+                "amount": 35
+            }
+        ]
+    },
+
+    "wooden_warship": {
+        "prerequisites": [
+            {
+                "research": "wooden_raft"
+            }
+        ],
+        "research_cost": [
+            {
+                "resource": "wood",
+                "amount": 100
+            }
+        ]
+    }
+}

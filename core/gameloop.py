@@ -20,6 +20,7 @@ sys.path.append(str(project_root))
 from ai.narrator_ai import NarratorAI
 from ai.parser_ai import ParserAI
 from ai.opener_ai import OpenerAI
+from core.validator import Validator
 from game_properties import *
 
 def format_table(table, indent=0):
@@ -67,19 +68,37 @@ def get_outcome(gamestate, player_action):
     )
 
     parser_output = response.json()["message"]["content"]
+
+    print("Parser Output: " + parser_output)
+
     data = json.loads(parser_output)
+
+    valid, error = Validator.validate_schema(data)
+
+    if not valid:
+        return [{
+            "success": False,
+            "reason": "invalid_parser_output",
+            "details": error,
+        }]
 
     results = []
 
     for action in data["actions"]:
-        handler = ACTION_HANDLERS.get(action["action"])
+        for action_type, action_data in action.items():
+            handler = ACTION_HANDLERS.get(action_type)
 
-        if handler is None:
-            print(f"Unknown action: {action['action']}")
-            continue
+            if handler is None:
+                print(f"Unknown action: {action_type}")
+                results.append({
+                    "success": False,
+                    "reason": f"unknown_action_{action_type}",
+                    "details": f"No handler registered for '{action_type}'"
+                })
+                continue
 
-        result = handler(gamestate, action)
-        results.append(result)
+            result = handler(gamestate, action_data)
+            results.append(result)
 
     return results
 
@@ -136,7 +155,7 @@ History:
 {history}
 
 Cities:
-{neighbors}
+{cities}
 
 Day: {day}
 At war: {wartime}

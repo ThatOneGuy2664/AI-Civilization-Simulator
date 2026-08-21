@@ -9,6 +9,7 @@ class OpenerAI():
     - Never infer outcomes
     - Use unnamed NPCs appropriate for the era to inform the player of locations and resources
     - Do not say they brought samples
+    - Do not name NPCs
 
     The simulation has generated the world below:
     """

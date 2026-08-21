@@ -14,7 +14,6 @@
 	},
 
     "research": {
-        "scale": "as an integer, the 'size' of the attempted jump in knowledge",
         "item": "the subject being researched"
     },
 
@@ -24,8 +23,7 @@
         "key_buildings": [
             "the main productive buildings in the city"
         ],
-        "location": "the location of the settlement",
-        "parent": "the best static point of identification, i.e. 'location: moon', 'parent: Earth' instead of any moon"
+        "location": "the location of the settlement"
     },
 
     "change_government": {
